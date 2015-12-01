@@ -13,7 +13,6 @@ from itertools import combinations
 from itertools import repeat
 
 from common_functions import merge_files
-from common_functions import pretty_json
 
 
 def lem(file_r, file_w, mystem='/Applications/mystem', params=None):
@@ -366,8 +365,8 @@ def make_gephi_files(file_data_name='data/input.txt',
     file_json_name = path_w + 'lems.json'
     file_nodes_name = path_w + 'nodes.csv'
     file_edges_name = path_w + 'edges.csv'
-    file_nodes_json_name = path_w + 'nodes.json'
-    file_edges_json_name = path_w + 'edges.json'
+    # file_nodes_json_name = path_w + 'nodes.json'
+    # file_edges_json_name = path_w + 'edges.json'
 
     # Сохраняем столбцы с запросами и весами в отдельные файлы
     with open(file_data_name, 'r') as file_data, \
@@ -412,15 +411,15 @@ def make_gephi_files(file_data_name='data/input.txt',
                                     include_bastard=bastard,
                                     include_non_cyrillic=non_cyrillic)
 
-    # Сохраняем словари в json-файлы
-    # Узлы
-    with open(file_nodes_json_name, 'w') as file_nodes_json:
-        pretty_json(node_dict, file_nodes_json)
-
-    # Рёбра
-    with open(file_edges_json_name, 'w') as file_edges_json:
-        edges = {' - '.join(edge): count for edge, count in edge_dict.items()}
-        pretty_json(edges, file_edges_json)
+    # # Сохраняем словари в json-файлы
+    # # Узлы
+    # with open(file_nodes_json_name, 'w') as file_nodes_json:
+    #     pretty_json(node_dict, file_nodes_json)
+    #
+    # # Рёбра
+    # with open(file_edges_json_name, 'w') as file_edges_json:
+    #     edges = {' - '.join(edge): count for edge, count in edge_dict.items()}
+    #     pretty_json(edges, file_edges_json)
 
     # Записываем словари для Gephi
     # Узлы
