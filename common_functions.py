@@ -51,3 +51,20 @@ def pretty_json(obj, file_w):
     :param file_w: файл для записи
     """
     json.dump(obj, file_w, sort_keys=True, indent=2, ensure_ascii=False)
+
+def save_rows(inputFile, numberOfRows):
+    """
+    Сохраняет из файла M первые N строк в отдельный файл вида "N_example_M", где:
+    * M - название файла, включая расширение, например, "data.csv", передаётся в первом аргументе
+    * N - количество строк, передаётся во втором аргументе
+    Пример вызова: save_rows('data.csv', 1000)
+    Создаст файл '1000_example_data.csv'
+    Удобно, чтобы быстро получить пример данных из большого файла.
+    """
+    with open(str(numberOfRows) + '_example_' + inputFile, 'w', encoding='utf-8') as out_f:
+        with open(inputFile, 'r', encoding='utf-8') as in_f:
+            i = 0
+            for line in in_f:
+                i += 1
+                if i > numberOfRows: break
+                out_f.write(line)
